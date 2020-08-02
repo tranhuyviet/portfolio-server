@@ -1,0 +1,1 @@
+export { contactSchema } from './contactSchema';
