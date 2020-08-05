@@ -2,6 +2,7 @@ import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -9,6 +10,8 @@ import typeDefs from './graphql/typeDefs';
 import resolvers from './graphql/resolvers';
 
 const app = express();
+
+app.use(cors());
 
 const server = new ApolloServer({
     typeDefs,
@@ -31,7 +34,7 @@ server.applyMiddleware({ app });
         });
         console.log('Database connect successfully');
         app.listen(port, () => {
-            console.log(`Server running at http://localhost:${port}${server.graphqlPath}`);
+            // console.log(`Server running at http://localhost:${port}${server.graphqlPath}`);
         });
     } catch (error) {
         console.error(error);
