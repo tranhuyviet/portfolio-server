@@ -20,7 +20,7 @@ export default {
                 const { name, email, message, recaptcha } = args;
 
                 // check recapcha
-                const secret = '6LdFqbcZAAAAABi7GqZleESqj_W-8GPlveDAdYHE';
+                const secret = process.env.RECAPTCHA_SECRET;
 
                 const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${recaptcha}`;
 
