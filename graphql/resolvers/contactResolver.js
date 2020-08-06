@@ -3,6 +3,7 @@ import { contactSchema } from '../schemas';
 import { UserInputError } from 'apollo-server-express';
 import errorParse from '../../utils/errorParse';
 import axios from 'axios';
+import { sendEmailToContact, sendEmailToViet } from '../../utils/mailer';
 
 export default {
     Mutation: {
@@ -38,7 +39,8 @@ export default {
                 });
 
                 await newContact.save();
-
+                sendEmailToContact(email);
+                sendEmailToViet(name, email, message);
                 return 'create contact success';
             } catch (error) {
                 return error;
